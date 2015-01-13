@@ -21,16 +21,19 @@
 	which awk > /dev/null 2>&1
 	if [ $? -eq 1 ]; then
 		echo -e "沒有 awk 這個工具程序，本程序 $0 將停止工作！"
+		exit
 	fi
 
 	which sed > /dev/null 2>&1
 	if [ $? -eq 1 ]; then
 		echo -e "沒有 sed 這個工具程序，本程序 $0 將停止工作！"
+		exit
 	fi
 
 	temp=`ps aux | grep syslog| grep -v grep`
 	if [ "$temp" == "" ]; then
 		echo -e "沒有 syslog 這個 daemon ，本程序 $0 將停止工作！"
+		exit
 	fi
 
 	if [ ! -d "$basedir" ]; then
